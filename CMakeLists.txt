@@ -115,8 +115,17 @@ else()
   add_library(momo_glcore STATIC ${GLCORE_SOURCES} ${GLCORE_HEADERS})
 endif()
 
-if(USE_GLEW)
-  target_link_libraries(momo_glcore 
-                        debug ${THIRD_PARTY_DEBUG_DEPENDENCIES}
-                        optimized ${THIRD_PARTY_RELEASE_DEPENDENCIES})
-endif()
+install(FILES ${GLCORE_HEADERS} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${foldername})
+
+install(TARGETS momo_glcore 
+        CONFIGURATIONS
+        Debug
+        RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/Debug
+        LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/Debug
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/Debug)
+install(TARGETS momo_glcore 
+        CONFIGURATIONS
+        Release
+        RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/Release
+        LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/Release
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/Release)
