@@ -1,0 +1,2 @@
+set(MIN_VER_CMAKE 2.8.7)
+set(MIN_VER_CUDA 7.5)
