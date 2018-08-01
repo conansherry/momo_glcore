@@ -29,14 +29,7 @@ include(cmake/MomoCVUtils.cmake)
 set(THIRD_PARTY_DEBUG_DEPENDENCIES "")
 set(THIRD_PARTY_RELEASE_DEPENDENCIES "")
 
-# zlib project
-if(WIN32)
-  add_subdirectory(external/zlib)
-else()
-  find_package(ZLIB REQUIRED)
-  list(APPEND THIRD_PARTY_DEBUG_DEPENDENCIES ${ZLIB_LIBRARIES})
-  list(APPEND THIRD_PARTY_RELEASE_DEPENDENCIES ${ZLIB_LIBRARIES})
-endif()
+add_subdirectory(external/zlib)
 
 add_subdirectory(external/libjpeg)
 
@@ -78,6 +71,7 @@ set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install" CACHE PATH "Installation 
 if(USE_GLEW)
   find_package(GLEW REQUIRED)
   add_definitions(-DUSE_GLEW)
+  add_definitions(-DGLEW_NO_GLU)
   include_directories(${GLEW_INCLUDE_DIR})
   list(APPEND THIRD_PARTY_DEBUG_DEPENDENCIES ${GLEW_LIBRARY_DEBUG})
   list(APPEND THIRD_PARTY_RELEASE_DEPENDENCIES ${GLEW_LIBRARY_RELEASE})
@@ -98,9 +92,7 @@ endif()
 include_directories("external")
 include_directories("external/libjpeg")
 include_directories("external/libpng")
-if(WIN32)
-  include_directories("external/zlib")
-endif()
+include_directories("external/zlib")
 
 file(GLOB_RECURSE GLCORE_HEADERS "src/*.h")
 file(GLOB_RECURSE GLCORE_SOURCES "src/*.cpp")
@@ -109,13 +101,10 @@ file(GLOB_RECURSE GLCORE_SOURCES "src/*.cpp")
 mmcv_make_group("${GLCORE_HEADERS}")
 mmcv_make_group("${GLCORE_SOURCES}")
 
-if(WIN32)
-  add_library(momo_glcore STATIC ${GLCORE_SOURCES} ${GLCORE_HEADERS})
-else()
-  add_library(momo_glcore STATIC ${GLCORE_SOURCES} ${GLCORE_HEADERS})
-endif()
+add_library(momo_glcore STATIC ${GLCORE_SOURCES} ${GLCORE_HEADERS})
 
-install(FILES ${GLCORE_HEADERS} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${foldername})
+install(FILES ${GLCORE_HEADERS} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/)
+install(DIRECTORY "external/glm" DESTINATION ${CMAKE_INSTALL_PREFIX}/include/)
 
 install(TARGETS momo_glcore 
         CONFIGURATIONS
