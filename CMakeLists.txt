@@ -102,7 +102,7 @@ file(GLOB_RECURSE GLCORE_SOURCES "src/*.cpp")
 mmcv_make_group("${GLCORE_HEADERS}")
 mmcv_make_group("${GLCORE_SOURCES}")
 
-add_library(momo_glcore SHARED ${GLCORE_SOURCES} ${GLCORE_HEADERS})
+add_library(momo_glcore STATIC ${GLCORE_SOURCES} ${GLCORE_HEADERS})
 
 install(FILES ${GLCORE_HEADERS} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/)
 install(DIRECTORY "external/glm" DESTINATION ${CMAKE_INSTALL_PREFIX}/include/)
