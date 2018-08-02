@@ -87,7 +87,7 @@ elseif(APPLE)
   set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 else()
   set(CMAKE_CXX_FLAGS "-std=c++11 -fPIC ${CMAKE_CXX_FLAGS}")
-  set(CMAKE_CXX_FLAGS "-fPIC ${CMAKE_C_FLAGS}")
+  set(CMAKE_C_FLAGS "-fPIC ${CMAKE_C_FLAGS}")
 endif()
 
 include_directories("external")
@@ -102,7 +102,7 @@ file(GLOB_RECURSE GLCORE_SOURCES "src/*.cpp")
 mmcv_make_group("${GLCORE_HEADERS}")
 mmcv_make_group("${GLCORE_SOURCES}")
 
-add_library(momo_glcore STATIC ${GLCORE_SOURCES} ${GLCORE_HEADERS})
+add_library(momo_glcore SHARED ${GLCORE_SOURCES} ${GLCORE_HEADERS})
 
 install(FILES ${GLCORE_HEADERS} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/)
 install(DIRECTORY "external/glm" DESTINATION ${CMAKE_INSTALL_PREFIX}/include/)
