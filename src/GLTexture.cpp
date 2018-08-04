@@ -121,6 +121,12 @@ void GLTexture::genTextures(GLenum target)
     glGenTextures(1, &m_textures);
 }
 
+void GLTexture::deleteTextures(GLenum target)
+{
+    m_target = target;
+    glDeleteTextures(1, &m_textures);
+}
+
 void GLTexture::bindTexture(GLenum target)
 {
     m_target = target;

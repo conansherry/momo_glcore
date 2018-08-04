@@ -21,6 +21,8 @@ public:
     
     void genTextures(GLenum target);
     
+    void deleteTextures(GLenum target);
+    
     void bindTexture(GLenum target);
     
 	void generateMipmap(GLenum target);

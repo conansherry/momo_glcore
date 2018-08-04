@@ -13,6 +13,8 @@ public:
 	GLFrameBuffer();
 
 	void gen();
+    
+    void del();
 
     void bindDraw();
     

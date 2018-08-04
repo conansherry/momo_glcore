@@ -15,6 +15,11 @@ void GLFrameBuffer::gen()
     glGenFramebuffers(1, &m_frameBuffer);
 }
 
+void GLFrameBuffer::del()
+{
+    glDeleteFramebuffers(1, &m_frameBuffer);
+}
+
 void GLFrameBuffer::bindDraw()
 {
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_frameBuffer);
