@@ -21,7 +21,7 @@ public:
     
     void genTextures(GLenum target);
     
-    void deleteTextures(GLenum target);
+    void del();
     
     void bindTexture(GLenum target);
     
