@@ -5,6 +5,15 @@
 project(zlib CXX C)
 
 include_directories("./")
+
+if(WIN32)
+elseif(APPLE)
+  set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
+else()
+  set(CMAKE_CXX_FLAGS "-std=c++11 -fPIC ${CMAKE_CXX_FLAGS}")
+  set(CMAKE_C_FLAGS "-fPIC ${CMAKE_C_FLAGS}")
+endif()
+
 file(GLOB_RECURSE THIRD_SOURCES "*.c")
 add_library(zlib STATIC ${THIRD_SOURCES})
 list(APPEND THIRD_PARTY_DEBUG_DEPENDENCIES "zlib")
