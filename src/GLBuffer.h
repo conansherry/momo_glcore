@@ -16,6 +16,8 @@ public:
 
     void unbind();
     
+    void del();
+    
 private:
 
     GLenum m_target;

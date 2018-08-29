@@ -14,6 +14,8 @@ public:
     
     void unbind();
     
+    void del();
+    
 private:
 
 	GLuint m_vertexArray;

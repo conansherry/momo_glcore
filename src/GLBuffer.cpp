@@ -25,3 +25,8 @@ void GLBuffer::unbind()
 {
     glBindBuffer(m_target, 0);
 }
+
+void GLBuffer::del()
+{
+    glDeleteBuffers(1, &m_vertexBuffer);
+}
